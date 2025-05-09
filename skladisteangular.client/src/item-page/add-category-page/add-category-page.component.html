@@ -1,0 +1,61 @@
+<div class="outer-form-cont">
+    <div class="inner-form-cont">
+      <form #storesForm ="ngForm" (ngSubmit)="onCategoryCreate(storesForm.value)">
+        <label>Category name</label>
+        <br />
+        <input type="text" name="name" ngModel/>
+        <br /><br />
+        <input type="submit" value="Add Category" class="submit-button"/>
+      </form>
+      <br /><br />
+    </div>
+  </div>
+
+  @if(editing) {
+    <div class="outer-form-cont">
+      <div class="inner-form-cont">
+        <form #storesForm ="ngForm" (ngSubmit)="onCategoryEdit(storesForm.value)">
+          <input type="text" name="name" [(ngModel)]="categoryName" placeholder="name"/>
+          <br><br>
+
+          <input type="submit" value="Submit" class="submit-button"/>
+        </form>
+      
+        <button (click)="editing=false" class="hide-button">
+          Cancel
+        </button>
+      </div>
+    </div>
+  }
+
+  @if(categories) {
+    <h3>All Categories: </h3>
+    <div class="table-cont">
+      <table >
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (category of categories; track $index) {
+            <tr>
+              <td>{{ category.name }}</td>
+  
+              <td class="td-buttons">
+                <button (click)="editCategory(category)">
+                  Edit
+                </button> 
+              </td>
+              <td class="td-buttons">
+                <button (click)="deleteCategory(category)">
+                  Delete
+                </button> 
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }

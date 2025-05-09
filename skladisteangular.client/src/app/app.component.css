@@ -1,0 +1,8 @@
+.body-cont {
+    /* background-color: #b4b4b4; */
+    background-color: #d3d3d3;
+    margin: 3em 10em;
+    height: 85vh;
+    overflow-x: auto;
+    border-radius: 0% 0% 25px 25px;
+}

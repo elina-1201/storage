@@ -1,0 +1,92 @@
+@if(items) {
+    <div class="top-button-div">
+
+        <button class="top-button" (click)="itemClicked = !itemClicked">
+            @if(itemClicked) {
+            Hide Details
+            }
+            @else {
+                Show Details
+            }
+        </button>
+    </div>
+
+    <div class="table-cont">
+      <table >
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+            @for (item of items; track $index) {
+                <tr>
+                    <td>{{ item.itemId }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.description }}</td>
+                </tr>
+                  @if(itemClicked) {
+                    <tr>
+                        <td colspan="3" style="background-color: aquamarine;">
+                            <!-- prikaz kategorija -->
+                            <p>
+                                @for (category of categories; track $index) {
+                                 @if(category.categoryId == item.categoryId){
+                                    <strong>Category:</strong> 
+                                     {{category.name}}
+                                 }
+                                }
+                            </p>
+                             <!-- prikaz dostavljaca -->
+                             <p>
+                                 @for (deliverer of deliverers; track $index) {
+                                     @if(deliverer.delivererId == item.delivererId){
+                                        <strong>Deliverer: </strong> 
+                                         {{deliverer.name}}
+                                     }
+                                 }
+                                </p>
+                             <!-- prikaz drzave -->
+                             <p>
+                                @for (country of countries; track $index) {
+                                    @if(country.countryId == item.countryId){
+                                        <strong>Country: </strong>
+                                        {{country.name}}
+                                        <strong>Country Code:</strong> 
+                                        {{country.code}}
+                                    }
+                                }
+                             </p>
+
+                             <!-- prikaz skladista -->
+                             <p style="color: rgb(4, 4, 155);">
+                                Available in store(s):
+                            </p>
+                             <p>
+                                @for (itemStore of itemStores; track $index) {
+                                    @if(itemStore.itemId == item.itemId) {
+                                        @for (store of stores; track $index) {
+                                            @if (itemStore.storeId == store.storeId) {
+                                                <div>
+                                                    <strong>Store:</strong>
+                                                    {{store.name}}
+                                                    <strong>Location:</strong>
+                                                    {{store.location}}
+                                                    <strong>Quantity:</strong>
+                                                    {{itemStore.quantity}}
+                                                </div>
+                                            }
+                                        }
+                                    }
+                                }
+                             </p>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+      </table>
+    </div>
+  }

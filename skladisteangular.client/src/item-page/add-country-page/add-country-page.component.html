@@ -1,0 +1,67 @@
+<div class="outer-form-cont">
+    <div class="inner-form-cont">
+      <form #storesForm ="ngForm" (ngSubmit)="onCountryCreate(storesForm.value)">
+        <label>Country name</label>
+        <br />
+        <input type="text" name="name" ngModel/>
+        <br /><br />
+        <label>Country code</label>
+        <br />
+        <input type="text" name="code" ngModel/>
+        <br><br>
+        <input type="submit" value="Add Country" class="submit-button"/>
+      </form>
+      <br /><br />
+    </div>
+  </div>
+
+  @if(editing) {
+    <div class="outer-form-cont">
+      <div class="inner-form-cont">
+        <form #storesForm ="ngForm" (ngSubmit)="onCountryEdit(storesForm.value)">
+          <input type="text" name="name" [(ngModel)]="countryName" placeholder="name"/>
+          <br><br>
+          <input type="text" name="code" [(ngModel)]="countryCode" placeholder="code"/>
+          <br><br>
+          <input type="submit" value="Submit" class="submit-button"/>
+        </form>
+      
+        <button (click)="editing=false" class="hide-button">
+          Cancel
+        </button>
+      </div>
+    </div>
+  }
+
+  @if(countries) {
+    <h3>All Categories: </h3>
+    <div class="table-cont">
+      <table >
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Code</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (country of countries; track $index) {
+            <tr>
+              <td>{{ country.name }}</td>
+                <td>{{country.code}}</td>
+              <td class="td-buttons">
+                <button (click)="editCountry(country)">
+                  Edit
+                </button> 
+              </td>
+              <td class="td-buttons">
+                <button (click)="deleteCountry(country)">
+                  Delete
+                </button> 
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }

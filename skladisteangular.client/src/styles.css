@@ -1,0 +1,106 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    background-color: #C5EAFA ;
+    font-family: sans-serif ;
+}
+.menu-cont {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    position: sticky; top: 0;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(70, 70, 70);
+    /* margin-bottom: 2em; */
+}
+
+.menu-cont > a {
+    padding: 1% 0;
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: large;
+    width: 100%;
+}
+
+.active-menu-link, .menu-cont > a:hover {
+background-color: aquamarine;
+color: black !important;
+/* background-color: rgb(16, 16, 117); */
+}
+
+.table-cont {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1%;
+}
+tr {
+    background: #FFF;
+}
+
+tr > th {
+    background: #F2F2F2;
+}
+
+th, td {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    /* min-width: 150px; */
+} 
+
+tr:hover {
+    background: #C5EAFA;
+}
+table {
+    width: 80%;
+}
+
+.outer-form-cont {
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    text-align: center;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+.inner-form-cont {
+    width: 70%; background-color: aquamarine; padding: 3%; border-radius: 15px;
+}
+
+.hide-button {
+    display: flex;
+    margin: 2%;
+}
+
+.add-button {
+    margin-bottom: 3%;
+    text-align: center;
+}
+
+input{
+    width: 70%;
+}
+
+.td-buttons {
+    text-align: center;
+}
+.td-buttons > button {
+    width: 70px;
+}
+h3{
+    text-align: center;
+}
+.top-button-div {
+    /* width: 100%; */
+    text-align: center;
+    margin: 3%
+}
+.top-button {
+    padding: 1%;
+}
+
+.submit-button {
+    width: 200px;
+    padding: 5px;
+}

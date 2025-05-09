@@ -1,0 +1,65 @@
+<div class="outer-form-cont">
+    <div class="inner-form-cont">
+      <form #storesForm ="ngForm" (ngSubmit)="onItemCreate(storesForm.value)">
+        <label>Name</label>
+        <br />
+        <input type="text" name="name" ngModel/>
+        <br /> <br />
+      
+        <label>Description</label>
+        <br />
+        <input type="text" name="description" ngModel/>
+        <br /><br />
+
+        <label>Select Category</label>
+        <br/>
+        <select ngModel name="categoryId">
+            @for (category of categories; track $index) {
+                <option [value]="category.categoryId">
+                    {{category.name}}
+                </option>
+            }
+        </select>
+        <br /><br />
+
+        <label>Select Country</label>
+        <br/>
+        <select name="countryId" ngModel>
+            @for (country of countries; track $index) {
+                <option [value]="country.countryId">
+                    {{country.name}}, {{country.code}}
+                </option>
+            }
+        </select>
+        <br /><br />
+
+        <label>Select Deliverer</label>
+        <br/>
+        <select name="delivererId" ngModel>
+            @for (deliverer of deliverers; track $index) {
+                <option [value]="deliverer.delivererId">
+                    {{deliverer.name}}
+                </option>
+            }
+        </select>
+        <br /><br />
+
+        <label>Select Store</label>
+        <br/>
+        <select  [(ngModel)]="storeId" name="store">
+            @for (store of stores; track $index) {
+                <option [value]="store.storeId">
+                    {{store.name}}
+                </option>
+            }
+        </select>
+        <br /><br />
+        <label>Quantity</label>
+        <br/>
+        <input type="number" [(ngModel)]="itemQuantity" name="quantity">
+        <br><br>
+
+        <input type="submit" value="Add Item" class="submit-button"/>
+      </form>
+    </div>
+  </div>

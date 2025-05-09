@@ -1,0 +1,82 @@
+@if(!addStorageClicked){
+  <div class="top-button-div">
+    <button (click)="addStorageClicked = true" class="top-button">
+      Add new storage
+    </button>
+  </div>
+}
+
+@if(addStorageClicked) {
+  <div class="outer-form-cont">
+    <div class="inner-form-cont">
+      <form #storesForm ="ngForm" (ngSubmit)="onStoreCreate(storesForm.value)">
+        <label>Name</label>
+        <br />
+        <input type="text" name="name" ngModel/>
+        <br /> <br />
+      
+        <label>Location</label>
+        <br />
+        <input type="text" name="location" ngModel/>
+        <br /><br />
+        <input type="submit" value="Add Store" />
+      </form>
+      <br /><br />
+  
+      <button (click)="addStorageClicked=false" class="hide-button">
+        Hide
+      </button>
+    </div>
+  </div>
+}
+
+@if(editing) {
+  <form #storesForm ="ngForm" (ngSubmit)="onStoreEdit(storesForm.value)">
+    <input type="text" name="name" [(ngModel)]="storeName" placeholder="name"/>
+    <br>
+    <input type="text" name="location" [(ngModel)]="storeLocation" placeholder="location"/>
+    <br />
+    <input type="submit" value="Edit Store" />
+  </form>
+
+  <button (click)="editing=false" class="hide-button">
+    Cancel
+  </button>
+}
+
+
+@if(stores) {
+  <h3>Storages:</h3>
+  <div class="table-cont">
+    <table >
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Location</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (store of stores; track $index) {
+          <tr>
+            <td>{{ store.storeId }}</td>
+            <td>{{ store.name }}</td>
+            <td>{{ store.location }}</td>
+
+            <td class="td-buttons">
+              <button (click)="editStore(store)">
+                Edit
+              </button> 
+            </td>
+            <td class="td-buttons">
+              <button (click)="deleteStore(store)">
+                Delete
+              </button> 
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

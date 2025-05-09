@@ -1,0 +1,104 @@
+@if(!addDeliverereClicked){
+  <div class="top-button-div">
+    <button (click)="addDeliverereClicked = true" class="top-button">
+      Add new deliverer
+    </button>
+  </div>
+}
+
+@if(addDeliverereClicked) {
+  <div class="outer-form-cont">
+    <div class="inner-form-cont">
+      <form #storesForm ="ngForm" (ngSubmit)="onDelivererCreate(storesForm.value)">
+        <label>Name</label>
+        <br />
+        <input type="text" name="name" ngModel/>
+        <br /> <br />
+      
+        <label>Contact Phone</label>
+        <br />
+        <input type="text" name="contactPhone" ngModel/>
+        <br /> <br />
+
+        <label>Contact E-mail</label>
+        <br />
+        <input type="email" name="contactEmail" ngModel/>
+        <br /> <br />
+
+        <label>Address</label>
+        <br />
+        <input type="text" name="address" ngModel/>
+        <br /><br />
+        <input type="submit" value="Add Store" />
+      </form>
+      <br /><br />
+  
+      <button (click)="addDeliverereClicked=false" class="hide-button">
+        Hide
+      </button>
+    </div>
+  </div>
+}
+
+@if(editing) {
+  <div class="outer-form-cont">
+    <div class="inner-form-cont">
+      <form #deliverersForm ="ngForm" (ngSubmit)="onDelivererEdit(deliverersForm.value)">
+        <input type="text" name="name" [(ngModel)]="name" placeholder="name"/>
+        <br><br>
+        <input type="text" name="contactPhone" [(ngModel)]="contactPhone" placeholder="contact phone"/>
+        <br /><br>
+        <input type="text" name="contactMail" [(ngModel)]="contactEmail" placeholder="contact e-mail"/>
+        <br /><br>
+        <input type="text" name="address" [(ngModel)]="address" placeholder="address"/>
+        <br /><br>
+        <input type="submit" value="Submit" class="submit-button"/>
+      </form>
+        <button (click)="editing=false" class="hide-button">
+          Cancel
+        </button>
+    </div>
+  </div>
+
+
+}
+  
+  @if(deliverers) {
+    <div style="text-align: center;">
+      <h3>Deliverers:</h3>
+      <div class="table-cont">
+        
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Contact Phone</th>
+              <th>Contact e-mail</th>
+              <th>Address</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let deliverer of deliverers">
+              <td>{{ deliverer.name }}</td>
+              <td>{{ deliverer.contactPhone }}</td>
+              <td>{{ deliverer.contactMail }}</td>
+              <td>{{ deliverer.address }}</td>
+
+              <td class="td-buttons">
+                <button (click)="editDeliverer(deliverer)" style="width: 70px;">
+                  Edit
+                </button> 
+              </td>
+              <td class="td-buttons">
+                <button (click)="deleteDeliverer(deliverer)">
+                  Delete
+                </button> 
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  }
